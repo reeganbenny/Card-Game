@@ -71,3 +71,69 @@ describe("CardGame", () => {
     expect(currentPlayer).toEqual({ id: 1, pile: [] });
   });
 });
+
+describe("Handle Action card A", () => {
+  it("should skip the next player", () => {
+    const player1 = {
+      id: 1,
+      pile: [
+        { rank: "6", suit: "spades" },
+        { rank: "A", suit: "spades" },
+      ],
+    };
+    const player2 = { id: 2, pile: [] };
+    const drawPile = [
+      { rank: "3", suit: "spades" },
+      { rank: "2", suit: "spades" },
+      { rank: "5", suit: "spades" },
+      { rank: "4", suit: "spades" },
+    ];
+    const game = new CardGame([player1, player2], drawPile);
+    game.playCard(1);
+    expect(game.currentPlayerIndex).toEqual(0);
+  });
+});
+
+describe("Handle Action card K", () => {
+  it("should change the game direction to anti-clockwise", () => {
+    const player1 = {
+      id: 1,
+      pile: [
+        { rank: "6", suit: "spades" },
+        { rank: "K", suit: "spades" },
+      ],
+    };
+    const player2 = { id: 2, pile: [] };
+    const drawPile = [
+      { rank: "3", suit: "spades" },
+      { rank: "2", suit: "spades" },
+      { rank: "5", suit: "spades" },
+      { rank: "4", suit: "spades" },
+    ];
+    const game = new CardGame([player1, player2], drawPile);
+    game.playCard(1);
+    expect(game.direction).toEqual(-1);
+  });
+});
+
+describe("Handle Action card Q", () => {
+  it("should make the next player draw 2 cards", () => {
+    const player1 = {
+      id: 1,
+      pile: [
+        { rank: "6", suit: "spades" },
+        { rank: "Q", suit: "spades" },
+      ],
+    };
+    const player2 = { id: 2, pile: [] };
+    const drawPile = [
+      { rank: "3", suit: "spades" },
+      { rank: "2", suit: "spades" },
+      { rank: "5", suit: "spades" },
+      { rank: "4", suit: "spades" },
+    ];
+    const game = new CardGame([player1, player2], drawPile);
+    game.playCard(1);
+    expect(game.playersPile[1].pile.length).toEqual(2);
+  });
+});
