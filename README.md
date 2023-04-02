@@ -17,7 +17,8 @@ Running this project should be very easy and quick.
 
 - Fork or directly clone this repository to your local machine
 - Run `npm i` / `npm install` to install all dependencies.</br>
-- Once the dependencies are finished installing, use the `node index.js` command to start the game. </br>
+- Once the dependencies are finished installing, use the `node index.js` command to start the game.
+- Once the dependencies are finished installing, use the `npm test` command to run the test commands </br>
 
 # Technology Stack
 
